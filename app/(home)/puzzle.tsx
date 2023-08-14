@@ -113,13 +113,76 @@ export const Puzzle = () => {
     return updatedSudokuObj;
   };
 
-  const handleCheckAndSetErrors = (BoxKey: number, row: number) => {
+  const checkDuplicatesInCol = (BoxKey: number, ColKey: number) => {
+    let updatedSudokuObj: Sudoku = [];
+
+    // col check
+    for (let i = 0; i < sudokuObj.length / 3; i += 1) {
+      const valueSet = new Set();
+      const group = [sudokuObj[i], sudokuObj[i + 3], sudokuObj[i + 6]];
+
+      // // Sudock안에서 동일 선상의 box인지 check
+      if (i === Math.floor(BoxKey % 3)) {
+        group.map((boxCol) => {
+          // boxCol > cell[ColKey] == box 안에서 동일 선상의 col
+          boxCol.map((cell) => {
+            if (cell[ColKey].value) {
+              if (
+                cell[ColKey].value !== null &&
+                valueSet.has(cell[ColKey].value)
+              ) {
+                // 중복 값인 경우 error 치환
+                for (const box of group) {
+                  box.map((col) => {
+                    if (col[ColKey].value) {
+                      if (col[ColKey].value === cell[ColKey].value) {
+                        col[ColKey].error = true;
+                      }
+                    }
+                  });
+                }
+              } else {
+                // 그렇지 않은 경우 valueSet값에 대입
+                cell[ColKey].error = false;
+                valueSet.add(cell[ColKey].value);
+              }
+            }
+          });
+        });
+      }
+      updatedSudokuObj.push(...group);
+    }
+
+    updatedSudokuObj = [
+      updatedSudokuObj[0], // sudoku box position
+      updatedSudokuObj[3], // [0] [3] [6]
+      updatedSudokuObj[6], // [1] [4] [7]
+      updatedSudokuObj[1], // [2] [5] [8]
+      updatedSudokuObj[4],
+      updatedSudokuObj[7],
+      updatedSudokuObj[2],
+      updatedSudokuObj[5],
+      updatedSudokuObj[8],
+    ];
+
+    return updatedSudokuObj;
+  };
+
+  const handleCheckAndSetErrors = (
+    BoxKey: number,
+    row: number,
+    col: number
+  ) => {
     // box error check
     let updatedSudokuObj = checkDuplicatesInBox();
+    setSudokuObj(updatedSudokuObj);
 
     // row error check
     updatedSudokuObj = checkDuplicatesInRow(BoxKey, row);
     setSudokuObj(updatedSudokuObj);
+
+    // col error check
+    updatedSudokuObj = checkDuplicatesInCol(BoxKey, col);
 
     setSudokuObj(updatedSudokuObj);
   };
@@ -134,7 +197,7 @@ export const Puzzle = () => {
     );
   }
 
-  function Box({ BoxKey, BoxObj }: { BoxObj: Box; BoxKey: number }) {
+  function Box({ BoxObj, BoxKey }: { BoxObj: Box; BoxKey: number }) {
     const renderCell = (row: number, col: number) => {
       return (
         <input
@@ -170,6 +233,7 @@ export const Puzzle = () => {
             BoxObj[row][col].error && "!border-[#ff5f5f]"
           )}
           value={BoxObj[row][col].value || ""}
+          disabled={!BoxObj[row][col].writable}
           onKeyDown={(e) => {
             if (
               [
@@ -194,7 +258,7 @@ export const Puzzle = () => {
                 ? null
                 : Number(e.key);
               setSudokuObj(updateItems);
-              handleCheckAndSetErrors(BoxKey, row);
+              handleCheckAndSetErrors(BoxKey, row, col);
             }
           }}
           onClick={() => {
