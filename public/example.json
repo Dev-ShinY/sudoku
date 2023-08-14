@@ -1,0 +1,155 @@
+[
+  [
+    [
+      { "value": null, "writable": true, "error": false },
+      { "value": null, "writable": true, "error": false },
+      { "value": 3, "writable": false, "error": false }
+    ],
+    [
+      { "value": 2, "writable": false, "error": false },
+      { "value": 5, "writable": false, "error": false },
+      { "value": null, "writable": false, "error": false }
+    ],
+    [
+      { "value": null, "writable": true, "error": false },
+      { "value": null, "writable": true, "error": false },
+      { "value": null, "writable": true, "error": false }
+    ]
+  ],
+  [
+    [
+      { "value": null, "writable": true, "error": false },
+      { "value": null, "writable": true, "error": false },
+      { "value": 6, "writable": false, "error": false }
+    ],
+    [
+      { "value": 7, "writable": false, "error": false },
+      { "value": null, "writable": true, "error": false },
+      { "value": null, "writable": true, "error": false }
+    ],
+    [
+      { "value": 2, "writable": false, "error": false },
+      { "value": 3, "writable": false, "error": false },
+      { "value": null, "writable": true, "error": false }
+    ]
+  ],
+  [
+    [
+      { "value": 4, "writable": false, "error": false },
+      { "value": 2, "writable": false, "error": false },
+      { "value": null, "writable": true, "error": false }
+    ],
+    [
+      { "value": 6, "writable": false, "error": false },
+      { "value": 8, "writable": false, "error": false },
+      { "value": null, "writable": true, "error": false }
+    ],
+    [
+      { "value": 9, "writable": false, "error": false },
+      { "value": null, "writable": true, "error": false },
+      { "value": null, "writable": true, "error": false }
+    ]
+  ],
+  [
+    [
+      { "value": 1, "writable": false, "error": false },
+      { "value": null, "writable": true, "error": false },
+      { "value": null, "writable": true, "error": false }
+    ],
+    [
+      { "value": 4, "writable": false, "error": false },
+      { "value": null, "writable": true, "error": false },
+      { "value": 9, "writable": false, "error": false }
+    ],
+    [
+      { "value": null, "writable": true, "error": false },
+      { "value": null, "writable": true, "error": false },
+      { "value": null, "writable": true, "error": false }
+    ]
+  ],
+  [
+    [
+      { "value": 4, "writable": false, "error": false },
+      { "value": 7, "writable": false, "error": false },
+      { "value": 3, "writable": false, "error": false }
+    ],
+    [
+      { "value": 5, "writable": false, "error": false },
+      { "value": null, "writable": true, "error": false },
+      { "value": null, "writable": true, "error": false }
+    ],
+    [
+      { "value": 9, "writable": false, "error": false },
+      { "value": 2, "writable": false, "error": false },
+      { "value": 1, "writable": false, "error": false }
+    ]
+  ],
+  [
+    [
+      { "value": 5, "writable": false, "error": false },
+      { "value": null, "writable": true, "error": false },
+      { "value": null, "writable": true, "error": false }
+    ],
+    [
+      { "value": 1, "writable": false, "error": false },
+      { "value": 3, "writable": false, "error": false },
+      { "value": 2, "writable": false, "error": false }
+    ],
+    [
+      { "value": null, "writable": true, "error": false },
+      { "value": null, "writable": true, "error": false },
+      { "value": null, "writable": true, "error": false }
+    ]
+  ],
+  [
+    [
+      { "value": 3, "writable": false, "error": false },
+      { "value": 4, "writable": false, "error": false },
+      { "value": 5, "writable": false, "error": false }
+    ],
+    [
+      { "value": 7, "writable": false, "error": false },
+      { "value": null, "writable": true, "error": false },
+      { "value": 6, "writable": false, "error": false }
+    ],
+    [
+      { "value": null, "writable": true, "error": false },
+      { "value": 9, "writable": false, "error": false },
+      { "value": null, "writable": true, "error": false }
+    ]
+  ],
+  [
+    [
+      { "value": null, "writable": true, "error": false },
+      { "value": 9, "writable": false, "error": false },
+      { "value": null, "writable": true, "error": false }
+    ],
+    [
+      { "value": 1, "writable": false, "error": false },
+      { "value": 8, "writable": false, "error": false },
+      { "value": null, "writable": true, "error": false }
+    ],
+    [
+      { "value": null, "writable": true, "error": false },
+      { "value": null, "writable": true, "error": false },
+      { "value": null, "writable": true, "error": false }
+    ]
+  ],
+  [
+    [
+      { "value": 8, "writable": false, "error": false },
+      { "value": 7, "writable": false, "error": false },
+      { "value": null, "writable": true, "error": false }
+    ],
+    [
+      { "value": null, "writable": true, "error": false },
+      { "value": null, "writable": true, "error": false },
+      { "value": 9, "writable": false, "error": false }
+    ],
+    [
+      { "value": null, "writable": true, "error": false },
+      { "value": null, "writable": true, "error": false },
+      { "value": null, "writable": true, "error": false }
+    ]
+  ]
+]
