@@ -78,9 +78,49 @@ export const Puzzle = () => {
     return updatedSudokuObj;
   };
 
-  const handleCheckAndSetErrors = () => {
+  const checkDuplicatesInRow = (BoxKey: number, RowKey: number) => {
+    const updatedSudokuObj: Sudoku = [];
+
+    // row check
+    for (let i = 0; i < sudokuObj.length; i += 3) {
+      const valueSet = new Set();
+      const group = sudokuObj.slice(i, i + 3);
+
+      // Sudock안에서 동일 선상의 box인지 check
+      if (i / 3 === Math.floor(BoxKey / 3)) {
+        // boxRow[RowKey] == box 안에서 동일 선상의 row
+        group.map((boxRow) => {
+          for (const cell of boxRow[RowKey]) {
+            if (cell.value !== null && valueSet.has(cell.value)) {
+              // 중복 값인 경우 error 치환
+              for (const box of group) {
+                for (const row of box[RowKey]) {
+                  if (row.value === cell.value) {
+                    row.error = true;
+                  }
+                }
+              }
+            } else {
+              // 그렇지 않은 경우 valueSet값에 대입
+              cell.error = false;
+              valueSet.add(cell.value);
+            }
+          }
+        });
+      }
+      updatedSudokuObj.push(...group);
+    }
+    return updatedSudokuObj;
+  };
+
+  const handleCheckAndSetErrors = (BoxKey: number, row: number) => {
     // box error check
     let updatedSudokuObj = checkDuplicatesInBox();
+
+    // row error check
+    updatedSudokuObj = checkDuplicatesInRow(BoxKey, row);
+    setSudokuObj(updatedSudokuObj);
+
     setSudokuObj(updatedSudokuObj);
   };
 
@@ -154,7 +194,7 @@ export const Puzzle = () => {
                 ? null
                 : Number(e.key);
               setSudokuObj(updateItems);
-              handleCheckAndSetErrors();
+              handleCheckAndSetErrors(BoxKey, row);
             }
           }}
           onClick={() => {
