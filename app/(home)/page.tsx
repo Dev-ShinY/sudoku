@@ -1,7 +1,8 @@
+import { Puzzle } from "./puzzle";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
-      Hello World :D
+      <Puzzle />
     </main>
   );
 }
