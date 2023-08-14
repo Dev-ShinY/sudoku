@@ -48,6 +48,42 @@ export const Puzzle = () => {
     }
   }, []);
 
+  const checkDuplicatesInBox = () => {
+    const updatedSudokuObj: Sudoku = [];
+
+    sudokuObj.map((box) => {
+      const valueSet = new Set();
+      const updateBox = box;
+
+      for (const row of updateBox) {
+        for (const cell of row) {
+          if (cell.value !== null && valueSet.has(cell.value)) {
+            // 중복 값인 경우 error 치환
+            for (const box of updateBox) {
+              for (const row of box) {
+                if (row.value === cell.value) {
+                  row.error = true;
+                }
+              }
+            }
+          } else {
+            // 그렇지 않은 경우 valueSet값에 대입
+            cell.error = false;
+            valueSet.add(cell.value);
+          }
+        }
+      }
+      updatedSudokuObj.push(updateBox);
+    });
+    return updatedSudokuObj;
+  };
+
+  const handleCheckAndSetErrors = () => {
+    // box error check
+    let updatedSudokuObj = checkDuplicatesInBox();
+    setSudokuObj(updatedSudokuObj);
+  };
+
   function Sudoku() {
     return (
       <div className={clsx("grid", "grid-cols-3")}>
@@ -88,9 +124,39 @@ export const Puzzle = () => {
             focusCoord[0] === BoxKey &&
               focusCoord[1] === row &&
               focusCoord[2] === col &&
-              "!bg-blue-300"
+              "!bg-blue-300",
+
+            // error effect
+            BoxObj[row][col].error && "!border-[#ff5f5f]"
           )}
           value={BoxObj[row][col].value || ""}
+          onKeyDown={(e) => {
+            if (
+              [
+                "Delete",
+                "Backspace",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+              ].includes(e.key)
+            ) {
+              const updateItems = [...sudokuObj];
+              updateItems[BoxKey][row][col].value = [
+                "Delete",
+                "Backspace",
+              ].includes(e.key)
+                ? null
+                : Number(e.key);
+              setSudokuObj(updateItems);
+              handleCheckAndSetErrors();
+            }
+          }}
           onClick={() => {
             setFocusCoord([BoxKey, row, col]);
             handleFocus(`${BoxKey}_${row}_${col}`);
